@@ -20,3 +20,23 @@ export const getPopularMovies = () => {
     response => response.json()
   );
 };
+
+export const getCastMembers = id => {
+  return fetch(`${baseURL}movie/${id}/credits?language=en-US`, options).then(
+    response => response.json()
+  );
+};
+
+export const getMovieReview = id => {
+  return fetch(
+    `${baseURL}movie/${id}/reviews?language=en-US&page=1`,
+    options
+  ).then(response => response.json());
+};
+
+export const movieDetails = id => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+    options
+  ).then(response => response.json());
+};

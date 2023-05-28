@@ -1,41 +1,27 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
-import { AppWrapper, Nav } from './App.styled';
-import Home from '../../pages/Home';
-import Movies from 'components/Movies/Movies';
-import MovieDetails from '../../pages/MovieDetails';
-import Cast from '../Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
-import styled from '@emotion/styled';
+import { Routes, Route } from 'react-router-dom';
+import { AppWrapper } from './App.styled';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
+import { lazy } from 'react';
 
-const StyledLink = styled(NavLink)`
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  color: black;
-  font-weight: 500;
-
-  &.active {
-    color: #ff0000;
-  }
-`;
+const Home = lazy(() => import('../../pages/Home'));
+const Movies = lazy(() => import('../../pages/Movies'));
+const MovieDetails = lazy(() => import('../../pages/MovieDetails'));
+const Cast = lazy(() => import('../Cast/Cast'));
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 export const App = () => {
   return (
     <AppWrapper>
-      <Nav>
-        <StyledLink to="/" active="true">
-          Home
-        </StyledLink>
-        <StyledLink to="/movies">Movies</StyledLink>
-      </Nav>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element={<MovieDetails />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<Home />} />
         </Route>
-        <Route path="*" element={<Home />} />
       </Routes>
     </AppWrapper>
   );
