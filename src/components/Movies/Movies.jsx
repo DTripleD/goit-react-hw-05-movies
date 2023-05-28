@@ -1,46 +1,44 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import MoviesList from 'components/MoviesList/MoviesList';
+import { searchFilmsByName } from 'services/api';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZTk2NzkxM2YyYTI0MWUwMjZhODZjZGRkOGZhZDA0YyIsInN1YiI6IjY0NzEyMWQyZGQ3MzFiMDBmYWU5Y2RmYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c0BqOYAiI0jKVlZ9l2Yx4Ke1g5cQnB9763DkGfGs40c',
-      },
-    };
+    const params = searchParams.get('query');
 
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?${searchParams.get(
-        'name'
-      )}&include_adult=false&language=en-US&page=1`,
-      options
-    )
-      .then(response => response.json())
+    if (!params) {
+      return;
+    }
+
+    searchFilmsByName(params)
       .then(data => setFilms(data))
       .catch(err => console.error(err));
   }, [searchParams]);
 
   const onFormSubmit = event => {
     event.preventDefault();
-    setSearchParams({ name: event.target.querry.value });
+
+    if (!query) {
+      alert('Enter something');
+      return;
+    }
+
+    setSearchParams({ query });
+    // setQuery('');
   };
   return (
     <>
       <form onSubmit={onFormSubmit}>
-        <input type="text" name="querry" />
+        <input type="text" onInput={e => setQuery(e.target.value)} />
         <button type="submit">Search</button>
       </form>
-      {/* <ul>
-        {films.map(film => (
-          <li>{film.title}</li>
-        ))}
-      </ul> */}
+
+      <MoviesList films={films.results || []}></MoviesList>
     </>
   );
 };

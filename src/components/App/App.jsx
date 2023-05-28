@@ -1,9 +1,9 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 import { AppWrapper, Nav } from './App.styled';
-import Home from 'components/Home/Home';
+import Home from '../../pages/Home';
 import Movies from 'components/Movies/Movies';
-import MovieDetails from 'components/MovieDetails/MovieDetails';
-import Cast from 'components/Cast/Cast';
+import MovieDetails from '../../pages/MovieDetails';
+import Cast from '../Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
 import styled from '@emotion/styled';
 
@@ -23,15 +23,18 @@ export const App = () => {
   return (
     <AppWrapper>
       <Nav>
-        <StyledLink to="/">Home</StyledLink>
+        <StyledLink to="/" active="true">
+          Home
+        </StyledLink>
         <StyledLink to="/movies">Movies</StyledLink>
       </Nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId'" element={<MovieDetails />} />
-        <Route path="/movies/:movieId/cast" element={<Cast />} />
-        <Route path="/movies/:movieId/reviews" element={<Reviews />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
         <Route path="*" element={<Home />} />
       </Routes>
     </AppWrapper>
