@@ -1,5 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   ListOfMovies,
   MoviesListItem,
@@ -20,16 +20,16 @@ const MoviesList = ({ films }) => {
   return (
     <div>
       <ListOfMovies>
-        {films?.map(film => (
-          <MoviesListItem key={film.id}>
-            <StyledLink to={`/movies/${film.id}`} state={{ from: location }}>
+        {films?.map(({ id, poster_path, name, title }) => (
+          <MoviesListItem key={id}>
+            <StyledLink to={`/movies/${id}`} state={{ from: location }}>
               <ImgWrapper>
-                <MovieImg src={IMAGES_BASE_URL + film.poster_path} alt="" />
+                <MovieImg src={IMAGES_BASE_URL + poster_path} alt="" />
                 <SeeMore className="see-more">See more</SeeMore>
               </ImgWrapper>
 
               <NameWrapper>
-                <FilmName>{film.name || film.title}</FilmName>
+                <FilmName>{name || title}</FilmName>
               </NameWrapper>
             </StyledLink>
           </MoviesListItem>
@@ -41,6 +41,13 @@ const MoviesList = ({ films }) => {
 
 export default MoviesList;
 
-// MoviesList.propTypes = {
-//   films: PropTypes.arrayOf{ },
-// };
+MoviesList.propTypes = {
+  films: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      poster_path: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+    })
+  ),
+};
