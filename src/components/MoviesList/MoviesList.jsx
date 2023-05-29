@@ -15,8 +15,6 @@ const MoviesList = ({ films }) => {
   const location = useLocation();
   const IMAGES_BASE_URL = 'https://image.tmdb.org/t/p/w500/';
 
-  console.log(films);
-
   return (
     <div>
       <ListOfMovies>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import MoviesList from '../components/MoviesList/MoviesList';
 import { getPopularMovies } from 'services/api';
+import { Container } from './MovieDetails.styled';
 
 const Home = () => {
   const [trending, setTrending] = useState([]);
@@ -10,10 +11,10 @@ const Home = () => {
       .catch(err => console.error(err));
   }, []);
   return (
-    <div>
+    <Container>
       <h2>Trending today:</h2>
       <MoviesList films={trending}></MoviesList>
-    </div>
+    </Container>
   );
 };
 

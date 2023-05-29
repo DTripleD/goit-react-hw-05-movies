@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { searchFilmsByName } from 'services/api';
+import { Container, Form, Button } from './MovieDetails.styled';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,17 +29,16 @@ const Movies = () => {
     }
 
     setSearchParams({ query });
-    // setQuery('');
   };
   return (
-    <>
-      <form onSubmit={onFormSubmit}>
+    <Container>
+      <Form onSubmit={onFormSubmit}>
         <input type="text" onInput={e => setQuery(e.target.value)} />
-        <button type="submit">Search</button>
-      </form>
+        <Button type="submit">Search</Button>
+      </Form>
 
       <MoviesList films={films.results}></MoviesList>
-    </>
+    </Container>
   );
 };
 
