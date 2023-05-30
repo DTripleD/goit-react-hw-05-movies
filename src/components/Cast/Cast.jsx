@@ -17,7 +17,7 @@ const Cast = () => {
   return (
     <div>
       <ul>
-        {cast?.map(({ profile_path, cast_id, name, character }) => (
+        {cast.map(({ profile_path, cast_id, name, character }) => (
           <li key={cast_id}>
             <img
               src={profile_path ? IMAGES_BASE_URL + profile_path : noImage}

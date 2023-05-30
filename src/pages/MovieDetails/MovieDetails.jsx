@@ -4,12 +4,12 @@ import { useParams, Outlet, useLocation, Link } from 'react-router-dom';
 
 import { movieDetails } from 'services/api';
 import { Suspense } from 'react';
-import { Loader } from '../components/Loader/Loader';
-import Movie from '../components/Movie/Movie';
+import { Loader } from '../../components/Loader/Loader';
+import Movie from '../../components/Movie/Movie';
 import { Container, MovieWrapper, StyledLink } from './MovieDetails.styled';
 
 const MovieDetails = () => {
-  const [movieInfo, setMovieInfo] = useState([]);
+  const [movieInfo, setMovieInfo] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
 
@@ -25,7 +25,7 @@ const MovieDetails = () => {
     <Container>
       <MovieWrapper>
         <StyledLink to={backLinkHref.current}>Go back</StyledLink>
-        <Movie movieInfo={movieInfo} />
+        {movieInfo && <Movie movieInfo={movieInfo} />}
         <div>
           <h3>Additional information</h3>
           <ul>
