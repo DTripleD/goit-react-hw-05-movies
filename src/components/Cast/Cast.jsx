@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastMembers } from 'services/api';
 import noImage from '../../images/no-image.jpg';
+import { List, Item } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -16,19 +17,20 @@ const Cast = () => {
 
   return (
     <div>
-      <ul>
+      <List>
         {cast.map(({ profile_path, cast_id, name, character }) => (
-          <li key={cast_id}>
+          <Item key={cast_id}>
             <img
               src={profile_path ? IMAGES_BASE_URL + profile_path : noImage}
               alt={name}
-              width="100px"
+              width="120px"
+              height="170px"
             />
-            <p>{name}</p>
+            <h3>{name}</h3>
             <p>Character: {character}</p>
-          </li>
+          </Item>
         ))}
-      </ul>
+      </List>
     </div>
   );
 };

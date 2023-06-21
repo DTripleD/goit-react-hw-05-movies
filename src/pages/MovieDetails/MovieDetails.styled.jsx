@@ -2,14 +2,15 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  padding-left: 15px;
-  padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  text-align: center;
+  /* text-align: center; */
+
+  padding-left: 100px;
+  padding-right: 100px;
 `;
 
 export const Form = styled.form`

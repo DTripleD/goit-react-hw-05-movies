@@ -6,13 +6,12 @@ export const ListOfMovies = styled.ul`
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 0;
 `;
 
 export const MoviesListItem = styled.li`
   list-style: none;
-  flex-basis: calc((100% - 262px) / 6);
+  flex-basis: calc((100% - 162px) / 6);
   border: 1px solid #eeeeee;
   border-bottom: none;
 `;

@@ -3,8 +3,8 @@ import { AppWrapper } from './App.styled';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import { lazy } from 'react';
 
-const Home = lazy(() => import('../../pages/Home'));
-const Movies = lazy(() => import('../../pages/Movies'));
+const Home = lazy(() => import('../../pages/Home/Home'));
+const Movies = lazy(() => import('../../pages/Movies/Movies'));
 const MovieDetails = lazy(() =>
   import('../../pages/MovieDetails/MovieDetails')
 );

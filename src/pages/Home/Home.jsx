@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import MoviesList from '../components/MoviesList/MoviesList';
+import MoviesList from '../../components/MoviesList/MoviesList';
 import { getPopularMovies } from 'services/api';
-import { Container } from './MovieDetails/MovieDetails.styled';
+import { Container } from '../MovieDetails/MovieDetails.styled';
 
 const Home = () => {
   const [trending, setTrending] = useState([]);
