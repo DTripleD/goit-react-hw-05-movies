@@ -8,35 +8,42 @@ const options = {
 
 const baseURL = 'https://api.themoviedb.org/3/';
 
-export const searchFilmsByName = params => {
-  return fetch(
+export const searchFilmsByName = async params => {
+  const response = await fetch(
     `${baseURL}search/movie?query=${params}&include_adult=false&language=en-US&page=1`,
     options
-  ).then(response => response.json());
-};
-
-export const getPopularMovies = () => {
-  return fetch(`${baseURL}/trending/all/day?language=en-US`, options).then(
-    response => response.json()
   );
+  return await response.json();
 };
 
-export const getCastMembers = id => {
-  return fetch(`${baseURL}movie/${id}/credits?language=en-US`, options).then(
-    response => response.json()
+export const getPopularMovies = async () => {
+  const response = await fetch(
+    `${baseURL}/trending/all/day?language=en-US`,
+    options
   );
+  return await response.json();
 };
 
-export const getMovieReview = id => {
-  return fetch(
+export const getCastMembers = async id => {
+  const response = await fetch(
+    `${baseURL}movie/${id}/credits?language=en-US`,
+    options
+  );
+  return await response.json();
+};
+
+export const getMovieReview = async id => {
+  const response = await fetch(
     `${baseURL}movie/${id}/reviews?language=en-US&page=1`,
     options
-  ).then(response => response.json());
+  );
+  return await response.json();
 };
 
-export const movieDetails = id => {
-  return fetch(
+export const movieDetails = async id => {
+  const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
     options
-  ).then(response => response.json());
+  );
+  return await response.json();
 };
