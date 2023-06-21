@@ -33,7 +33,11 @@ const Movies = () => {
   return (
     <Container>
       <Form onSubmit={onFormSubmit}>
-        <input type="text" onInput={e => setQuery(e.target.value)} />
+        <input
+          type="text"
+          onInput={e => setQuery(e.target.value)}
+          placeholder="Enter movie name"
+        />
         <Button type="submit">Search</Button>
       </Form>
 

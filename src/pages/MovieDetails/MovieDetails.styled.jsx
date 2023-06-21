@@ -6,6 +6,10 @@ export const Container = styled.div`
   padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 `;
 
 export const Form = styled.form`
@@ -44,7 +48,28 @@ export const StyledLink = styled(Link)`
   margin: 5px;
 `;
 
+export const StyledLinkAdditional = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+`;
+
 export const MovieWrapper = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const Item = styled.li`
+  list-style: none;
+  padding: 0.5rem 2rem;
+  border: 0.2rem solid darkred;
+  border-radius: 0.5rem;
+
+  font-size: 1.2rem;
+
+  background-color: darkred;
+`;
+
+export const List = styled.ul`
+  display: flex;
+  gap: 20px;
 `;

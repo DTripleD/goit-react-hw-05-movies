@@ -1,12 +1,19 @@
 import { useEffect, useRef } from 'react';
 import { useState } from 'react';
-import { useParams, Outlet, useLocation, Link } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 
 import { movieDetails } from 'services/api';
 import { Suspense } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import Movie from '../../components/Movie/Movie';
-import { Container, MovieWrapper, StyledLink } from './MovieDetails.styled';
+import {
+  Container,
+  Item,
+  List,
+  MovieWrapper,
+  StyledLink,
+  StyledLinkAdditional,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState(null);
@@ -28,14 +35,14 @@ const MovieDetails = () => {
         {movieInfo && <Movie movieInfo={movieInfo} />}
         <div>
           <h3>Additional information</h3>
-          <ul>
-            <li>
-              <Link to="cast">Cast</Link>
-            </li>
-            <li>
-              <Link to="reviews">Reviews</Link>
-            </li>
-          </ul>
+          <List>
+            <Item>
+              <StyledLinkAdditional to="cast">Cast</StyledLinkAdditional>
+            </Item>
+            <Item>
+              <StyledLinkAdditional to="reviews">Reviews</StyledLinkAdditional>
+            </Item>
+          </List>
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>

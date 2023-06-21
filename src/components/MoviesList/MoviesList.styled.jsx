@@ -5,11 +5,16 @@ export const ListOfMovies = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  justify-content: center;
+  padding-left: 40px;
+  padding-right: 40px;
 `;
 
 export const MoviesListItem = styled.li`
   list-style: none;
-  flex-basis: calc((100% - 150px) / 6);
+  flex-basis: calc((100% - 262px) / 6);
+  border: 1px solid #eeeeee;
+  border-bottom: none;
 `;
 
 export const StyledLink = styled(Link)`
@@ -53,6 +58,7 @@ export const NameWrapper = styled.div`
   border: 1px solid #eeeeee;
   border-top: none;
   padding: 20px 24px;
+  flex-grow: 1;
 `;
 
 export const FilmName = styled.h2`
