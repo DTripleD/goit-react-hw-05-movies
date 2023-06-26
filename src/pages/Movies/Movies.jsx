@@ -11,6 +11,7 @@ const Movies = () => {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
+    document.title = 'Search page';
     const params = searchParams.get('query');
     if (!params) {
       return;

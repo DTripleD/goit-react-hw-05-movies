@@ -24,7 +24,11 @@ const MovieDetails = () => {
 
   useEffect(() => {
     movieDetails(movieId)
-      .then(response => setMovieInfo(response))
+      .then(response => {
+        document.title = response.original_title;
+        setMovieInfo(response);
+      })
+      .then(console.log)
       .catch(err => console.error(err));
   }, [movieId]);
 

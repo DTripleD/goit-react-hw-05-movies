@@ -6,6 +6,7 @@ import { Container } from '../MovieDetails/MovieDetails.styled';
 const Home = () => {
   const [trending, setTrending] = useState([]);
   useEffect(() => {
+    document.title = 'Home page';
     getPopularMovies()
       .then(data => setTrending(data.results))
       .catch(err => console.error(err));
